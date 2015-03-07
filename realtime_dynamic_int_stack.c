@@ -6,10 +6,10 @@ static const int INITIAL_CAPACITY = 16;
 
 struct Stack {
   int * primary;
-  size_t size;
-  size_t capacity;
   int * smaller;
   int * larger;
+  size_t size;
+  size_t capacity;
   size_t next_smaller;
   size_t next_larger;
 };
