@@ -104,7 +104,6 @@ void stack_set(Stack * const stack, size_t const ix, int const x) {
 int stack_get(const Stack * const stack, size_t const ix) {
   assert(stack);
   assert(ix < stack->size);
-
   return stack->primary[ix];
 }
 
