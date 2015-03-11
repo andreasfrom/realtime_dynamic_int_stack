@@ -15,3 +15,5 @@ int stack_get(Stack const * const stack, size_t const ix);
 bool stack_is_empty(Stack const * const stack);
 size_t stack_size(Stack const * const stack);
 size_t stack_capacity(Stack const * const stack);
+
+int * stack_degenerate_to_array(Stack * const stack, size_t * const size_out);

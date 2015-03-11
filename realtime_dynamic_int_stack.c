@@ -121,3 +121,15 @@ size_t stack_capacity(Stack const * const stack) {
   assert(stack);
   return stack->capacity;
 }
+
+int * stack_degenerate_to_array(Stack * const stack, size_t * const size_out) {
+  assert(stack);
+
+  *size_out = stack->size;
+
+  int * primary = stack->primary;
+  free(stack->smaller);
+  free(stack->larger);
+  free(stack);
+  return primary;
+}
