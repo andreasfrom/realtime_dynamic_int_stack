@@ -2,7 +2,7 @@
 #include <assert.h>
 #include "realtime_dynamic_int_stack.h"
 
-static const int INITIAL_CAPACITY = 16;
+static int const INITIAL_CAPACITY = 16;
 
 struct Stack {
   int * primary;
@@ -15,15 +15,15 @@ struct Stack {
 };
 
 Stack * stack_alloc() {
-  int * smaller = malloc(INITIAL_CAPACITY / 2 * sizeof *smaller);
-  assert(smaller);
-  int * primary = malloc(INITIAL_CAPACITY * sizeof *primary);
-  assert(primary);
-  int * larger = malloc(INITIAL_CAPACITY * 2 * sizeof *larger);
-  assert(larger);
+  int * const smaller = malloc(INITIAL_CAPACITY / 2 * sizeof *smaller);
+  assert(smaller && "failed to malloc");
+  int * const primary = malloc(INITIAL_CAPACITY * sizeof *primary);
+  assert(primary && "failed to malloc");
+  int * const larger = malloc(INITIAL_CAPACITY * 2 * sizeof *larger);
+  assert(larger && "failed to malloc");
 
-  Stack * stack = malloc(sizeof *stack);
-  assert(stack);
+  Stack * const stack = malloc(sizeof *stack);
+  assert(stack && "failed to malloc");
 
   *stack = (Stack) {
     .smaller = smaller, .primary = primary, .larger = larger,
@@ -47,8 +47,8 @@ void stack_push(Stack * const stack, int const x) {
 
   if (stack->size >= stack->capacity) {
     stack->capacity *= 2;
-    int * new_larger = malloc(2 * stack->capacity * sizeof *new_larger);
-    assert(new_larger);
+    int * const new_larger = malloc(2 * stack->capacity * sizeof *new_larger);
+    assert(new_larger && "failed to malloc");
     free(stack->smaller);
     stack->smaller = stack->primary;
     stack->primary = stack->larger;
@@ -72,8 +72,8 @@ int stack_pop(Stack * const stack) {
 
   if (stack->size <= stack->capacity/4 && stack->size > INITIAL_CAPACITY) {
     stack->capacity /= 2;
-    int * new_smaller = malloc(stack->capacity / 2 * sizeof *new_smaller);
-    assert(new_smaller);
+    int * const new_smaller = malloc(stack->capacity / 2 * sizeof *new_smaller);
+    assert(new_smaller && "failed to malloc");
     free(stack->larger);
     stack->larger = stack->primary;
     stack->primary = stack->smaller;
@@ -101,18 +101,23 @@ void stack_set(Stack * const stack, size_t const ix, int const x) {
   stack->larger[ix] = x;
 }
 
-int stack_get(const Stack * const stack, size_t const ix) {
+int stack_get(Stack const * const stack, size_t const ix) {
   assert(stack);
   assert(ix < stack->size);
   return stack->primary[ix];
 }
 
-size_t stack_size(const Stack * const stack) {
+bool stack_is_empty(Stack const * const stack) {
+  assert(stack);
+  return stack->size == 0;
+}
+
+size_t stack_size(Stack const * const stack) {
   assert(stack);
   return stack->size;
 }
 
-size_t stack_capacity(const Stack * const stack) {
+size_t stack_capacity(Stack const * const stack) {
   assert(stack);
   return stack->capacity;
 }
