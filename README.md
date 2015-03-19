@@ -11,3 +11,8 @@ The code is compatible with the C99 standard and higher and the example can be c
 	./example
 
 The stack stores `int` because that's all I need for my course, but it should be easy to store void pointers or anything else instead by modifying the code.
+
+# Testing
+I'm using QuickCheck in Haskell to test the C code through the FFI.
+
+The bindings are defined in `CStack.hs` and the properties in `Main.hs`.

@@ -96,7 +96,7 @@ void stack_set(Stack * const stack, size_t const ix, int const x) {
 
   if (ix < stack->capacity / 2)
     stack->smaller[ix] = x;
-  
+
   stack->primary[ix] = x;
   stack->larger[ix] = x;
 }
@@ -122,7 +122,7 @@ size_t stack_capacity(Stack const * const stack) {
   return stack->capacity;
 }
 
-int * stack_degenerate_to_array(Stack * const stack, size_t * const size_out) {
+int * stack_degenerate_to_array(Stack * const stack, uintptr_t * const size_out) {
   assert(stack);
 
   *size_out = stack->size;
