@@ -122,7 +122,7 @@ size_t stack_capacity(Stack const * const stack) {
   return stack->capacity;
 }
 
-int * stack_degenerate_to_array(Stack * const stack, uintptr_t * const size_out) {
+int * stack_degenerate_to_array(Stack * const stack, size_t * const size_out) {
   assert(stack);
 
   *size_out = stack->size;
