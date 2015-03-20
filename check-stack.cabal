@@ -20,6 +20,6 @@ executable check-stack
                      , base >=4.7 && <4.8
   includes:            realtime_dynamic_int_stack.h
   c-sources:           realtime_dynamic_int_stack.c
-  CC-options:          -O3 -DNDEBUG
+  CC-options:          -Weverything -std=c11
   -- hs-source-dirs:      
   default-language:    Haskell2010
