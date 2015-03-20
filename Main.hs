@@ -131,6 +131,6 @@ runTests = $quickCheckAll
 
 runDeepTests :: IO Bool
 runDeepTests = $forAllProperties $ quickCheckWithResult
-               (stdArgs { maxSuccess = 10000, maxSize = 1000})
+               (stdArgs { maxSuccess = 1000, maxSize = 1000})
 main :: IO ()
 main = void runDeepTests
