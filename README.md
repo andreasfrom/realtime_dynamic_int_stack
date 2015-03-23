@@ -7,8 +7,8 @@ The space usage is linear in the number of elements, but with a constant factor 
 
 The code is compatible with the C99 standard and higher and the example can be compiled with
 
-	clang -std=c11 -Weverything realtime_dynamic_int_stack.c example.c -o example
-	./example
+	clang -std=c11 -Weverything realtime_dynamic_int_stack.c stack_example.c -o stack_example
+	./stack_example
 
 The stack stores `int` because that's all I need for my course, but it should be easy to store void pointers or anything else instead by modifying the code.
 
