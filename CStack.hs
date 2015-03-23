@@ -1,7 +1,7 @@
 module CStack where
 
-import Foreign
-import Foreign.C.Types
+import           Foreign
+import           Foreign.C.Types
 
 data Stack
 

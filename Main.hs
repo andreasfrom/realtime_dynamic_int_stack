@@ -2,15 +2,15 @@
 
 module Main where
 
-import Foreign hiding (void)
-import Foreign.C.Types
-import Test.QuickCheck
-import Test.QuickCheck.Monadic
-import Test.QuickCheck.All ()
-import Control.Applicative
-import Control.Monad (void, forM, forM_)
-import System.IO.Unsafe (unsafePerformIO)
-import CStack
+import           Control.Applicative
+import           Control.Monad           (forM, forM_, void)
+import           CStack
+import           Foreign                 hiding (void)
+import           Foreign.C.Types
+import           System.IO.Unsafe        (unsafePerformIO)
+import           Test.QuickCheck
+import           Test.QuickCheck.All     ()
+import           Test.QuickCheck.Monadic
 
 newtype StackPtr = StackPtr (Ptr Stack)
 
